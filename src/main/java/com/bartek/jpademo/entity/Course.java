@@ -11,9 +11,10 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @ToString
 @Table(name = "CourseDetails")
+@NamedQuery(name = "query_get_all_courses", query = "Select c from Course c")
+@NamedQuery(name = "query_get_100_steps_courses", query = "Select c from Course c where name like '%100 Steps'")
 public class Course {
     @Id
     @GeneratedValue
@@ -28,6 +29,11 @@ public class Course {
     private LocalDateTime createdDate;
 
     public Course(String name) {
+        this.name = name;
+    }
+
+    public Course(Long id, String name) {
+        this.id = id;
         this.name = name;
     }
 }
