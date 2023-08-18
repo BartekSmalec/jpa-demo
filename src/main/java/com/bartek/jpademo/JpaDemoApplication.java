@@ -20,9 +20,10 @@ public class JpaDemoApplication implements CommandLineRunner {
     }
 
     @Override
-    public void run(String... args){
+    public void run(String... args) {
         long id = 10001L;
         Course course = courseRepository.findById(id);
         log.info("Course 1001 is: {}", course);
+        log.info("Course save: {}", courseRepository.save(new Course(null, "Microservices in 50 steps")));
     }
 }
