@@ -4,11 +4,13 @@ import com.bartek.jpademo.entity.Course;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
 @Repository
 @Transactional
 @AllArgsConstructor
+@Slf4j
 public class CourseRepository {
 
     EntityManager em;
@@ -29,5 +31,30 @@ public class CourseRepository {
             em.merge(course);
         }
         return course;
+    }
+
+    public void playWithEntityManager() {
+        log.info("playWithEntityManager - start");
+
+        Course course1 = new Course("Web Services in 100 Steps");
+        em.persist(course1);
+        em.flush();
+
+        course1.setName("Web services in 100 steps - Updated");
+        //em.flush();
+
+        // To refresh course1 with a values from database, it will revert course name to old value
+        em.refresh(course1);
+
+        // em.clear() // Will detach all from an entity manger course1 and course2
+
+        Course course2 = new Course("AngularJS in 100 Steps");
+        em.persist(course2);
+        em.flush();
+
+        em.detach(course2); // Will detach course 2 from an entity manager
+
+        course2.setName("AngularJS in 100 Steps - Updated");
+        em.flush();
     }
 }

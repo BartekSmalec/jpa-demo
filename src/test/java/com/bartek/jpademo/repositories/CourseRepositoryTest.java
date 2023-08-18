@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
@@ -27,7 +26,6 @@ class CourseRepositoryTest {
 
     @Test
     @DirtiesContext
-        //Reset data back to default
     void deleteById_basic() {
         courseRepository.deleteById(10002L);
         assertNull(courseRepository.findById(10002L));
@@ -47,5 +45,11 @@ class CourseRepositoryTest {
         Course course = courseRepository.save(new Course(10002L, courseTitle));
         assertEquals(courseTitle, course.getName());
         assertEquals(10002L, course.getId());
+    }
+
+    @Test
+    @DirtiesContext
+    void playWithEntityManager() {
+        courseRepository.playWithEntityManager();
     }
 }
