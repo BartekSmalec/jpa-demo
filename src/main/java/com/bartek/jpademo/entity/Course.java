@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @ToString
-@Table(name = "CourseDetails")
+@Table(name = "course")
 @NamedQuery(name = "query_get_all_courses", query = "Select c from Course c")
 @NamedQuery(name = "query_get_100_steps_courses", query = "Select c from Course c where name like '%100 Steps'")
 public class Course {
@@ -20,7 +20,7 @@ public class Course {
     @GeneratedValue
     private Long id;
 
-    @Column(name = "fullname", nullable = false)
+    @Column(name = "name", nullable = false)
     private String name;
 
     @UpdateTimestamp
