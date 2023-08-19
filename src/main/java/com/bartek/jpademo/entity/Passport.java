@@ -1,9 +1,6 @@
 package com.bartek.jpademo.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
@@ -19,6 +16,10 @@ public class Passport {
 
     @Column(nullable = false)
     private String number;
+
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "passport")
+    @ToString.Exclude
+    private Student student;
 
     public Passport(String number) {
         this.number = number;

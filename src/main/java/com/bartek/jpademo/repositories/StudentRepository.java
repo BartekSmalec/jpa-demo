@@ -42,4 +42,22 @@ public class StudentRepository {
         student.setPassport(passport);
         em.persist(student);
     }
+
+    public void someOperationToUnderstandPersistenceContext(){
+        //Database Operation 1 - Retrieve student
+        Student student = em.find(Student.class, 20001L);
+        //Persistence context (student)
+
+        //Database Operation 2 - Retrieve passport
+        Passport passport = student.getPassport();
+        //Persistence context (student, passport)
+
+        //Database Operation 3 - update passport
+        passport.setNumber("E123456");
+        //Persistence context (student, passport++)
+
+        //Database Operation 4 - update student
+        student.setName("Ranga - updated");
+        //Persistence context (student++, passport++)
+    }
 }
