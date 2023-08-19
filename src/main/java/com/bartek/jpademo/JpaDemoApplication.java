@@ -2,6 +2,7 @@ package com.bartek.jpademo;
 
 import com.bartek.jpademo.entity.Course;
 import com.bartek.jpademo.repositories.CourseRepository;
+import com.bartek.jpademo.repositories.StudentRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
@@ -15,6 +16,8 @@ public class JpaDemoApplication implements CommandLineRunner {
 
     private final CourseRepository courseRepository;
 
+    private final StudentRepository studentRepository;
+
     public static void main(String[] args) {
         SpringApplication.run(JpaDemoApplication.class, args);
     }
@@ -26,6 +29,8 @@ public class JpaDemoApplication implements CommandLineRunner {
         log.info("Course 1001 is: {}", course);
         log.info("Course save: {}", courseRepository.save(new Course(null, "Microservices in 50 steps")));*/
 
-        courseRepository.playWithEntityManager();
+        studentRepository.saveStudentWithPassport();
+
+        //courseRepository.playWithEntityManager();
     }
 }
