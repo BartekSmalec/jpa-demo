@@ -32,6 +32,9 @@ public class Course {
     @ToString.Exclude
     private List<Review> reviews = new ArrayList<>();
 
+    @ManyToMany(mappedBy = "courses")
+    private List<Student> students = new ArrayList<>();
+
     @UpdateTimestamp
     private LocalDateTime lastUpdatedDate;
     @CreationTimestamp
@@ -52,5 +55,9 @@ public class Course {
 
     public void removeReviews(Review review) {
         this.reviews.remove(review);
+    }
+
+    public void addStudent(Student students) {
+        this.students.add(students);
     }
 }

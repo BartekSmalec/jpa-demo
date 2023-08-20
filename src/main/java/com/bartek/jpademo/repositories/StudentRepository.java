@@ -1,5 +1,6 @@
 package com.bartek.jpademo.repositories;
 
+import com.bartek.jpademo.entity.Course;
 import com.bartek.jpademo.entity.Passport;
 import com.bartek.jpademo.entity.Student;
 import jakarta.persistence.EntityManager;
@@ -43,7 +44,7 @@ public class StudentRepository {
         em.persist(student);
     }
 
-    public void someOperationToUnderstandPersistenceContext(){
+    public void someOperationToUnderstandPersistenceContext() {
         //Database Operation 1 - Retrieve student
         Student student = em.find(Student.class, 20001L);
         //Persistence context (student)
@@ -59,5 +60,18 @@ public class StudentRepository {
         //Database Operation 4 - update student
         student.setName("Ranga - updated");
         //Persistence context (student++, passport++)
+    }
+
+    public void insertStudentAndCourse() {
+        Student student = new Student("Jack");
+        Course course = new Course("Microservices in 100 steps");
+
+        em.persist(student);
+        em.persist(course);
+
+        student.addCourse(course);
+        course.addStudent(student);
+
+        em.persist(student);
     }
 }

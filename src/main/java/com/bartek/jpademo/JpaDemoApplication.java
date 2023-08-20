@@ -43,5 +43,7 @@ public class JpaDemoApplication implements CommandLineRunner {
         reviews.add(new Review("4", "Great course it helped me getting my first job"));
 
         courseRepository.addReviewsForCourse(10003L, reviews);
+
+        studentRepository.insertStudentAndCourse();
     }
 }

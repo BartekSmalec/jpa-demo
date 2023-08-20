@@ -1,6 +1,7 @@
 package com.bartek.jpademo.repositories;
 
 import com.bartek.jpademo.JpaDemoApplication;
+import com.bartek.jpademo.entity.Course;
 import com.bartek.jpademo.entity.Passport;
 import com.bartek.jpademo.entity.Student;
 import jakarta.persistence.EntityManager;
@@ -64,5 +65,22 @@ class StudentRepositoryTest {
         Passport passport = em.find(Passport.class, 40001L);
         log.info("Passport -> {}", passport);
         log.info("Student -> {}", passport.getStudent());
+    }
+
+    @Test
+    @Transactional
+    void retrieveStudentAndCoursesTest() {
+        Student student = em.find(Student.class, 20001L);
+        log.info("Student -> {}", student);
+        log.info("Student's courses -> {}", student.getCourses());
+    }
+
+
+    @Test
+    @Transactional
+    void retrieveCourseAndStudentTest() {
+        Course course = em.find(Course.class, 10001L);
+        log.info("Course -> {}", course);
+        log.info("Student's of course -> {}", course.getStudents());
     }
 }
