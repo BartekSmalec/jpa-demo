@@ -1,11 +1,14 @@
 package com.bartek.jpademo.repositories;
 
 import com.bartek.jpademo.entity.Course;
+import com.bartek.jpademo.entity.Review;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 @Transactional
@@ -56,5 +59,19 @@ public class CourseRepository {
 
         course2.setName("AngularJS in 100 Steps - Updated");
         em.flush();
+    }
+
+    public void addReviewsForCourse(Long courseId, List<Review> reviews) {
+        Course course = findById(courseId);
+
+        log.info("course.getReviews() -> {}", course.getReviews());
+        reviews.forEach(r -> addReview(course, r));
+
+    }
+
+    public void addReview(Course course, Review review) {
+        review.setCourse(course);
+        course.addReview(review);
+        em.persist(review);
     }
 }

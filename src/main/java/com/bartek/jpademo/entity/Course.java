@@ -1,11 +1,16 @@
 package com.bartek.jpademo.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -23,6 +28,10 @@ public class Course {
     @Column(name = "name", nullable = false)
     private String name;
 
+    @OneToMany(mappedBy = "course", fetch = FetchType.EAGER)
+    @ToString.Exclude
+    private List<Review> reviews = new ArrayList<>();
+
     @UpdateTimestamp
     private LocalDateTime lastUpdatedDate;
     @CreationTimestamp
@@ -35,5 +44,13 @@ public class Course {
     public Course(Long id, String name) {
         this.id = id;
         this.name = name;
+    }
+
+    public void addReview(Review review) {
+        this.reviews.add(review);
+    }
+
+    public void removeReviews(Review review) {
+        this.reviews.remove(review);
     }
 }

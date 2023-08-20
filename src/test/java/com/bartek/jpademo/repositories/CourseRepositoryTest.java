@@ -2,11 +2,15 @@ package com.bartek.jpademo.repositories;
 
 import com.bartek.jpademo.JpaDemoApplication;
 import com.bartek.jpademo.entity.Course;
+import com.bartek.jpademo.entity.Review;
+import jakarta.persistence.EntityManager;
+import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
@@ -16,6 +20,9 @@ class CourseRepositoryTest {
 
     @Autowired
     CourseRepository courseRepository;
+
+    @Autowired
+    EntityManager entityManager;
 
     @Test
     void findById_basic() {
@@ -51,5 +58,19 @@ class CourseRepositoryTest {
     @DirtiesContext
     void playWithEntityManager() {
         courseRepository.playWithEntityManager();
+    }
+
+    @Test
+    @Transactional
+    void retrieveReviewsForCourse() {
+        Course course = courseRepository.findById(10001L);
+        //log.info("Reviews -> {}", course.getReviews());
+    }
+
+    @Test
+    @Transactional
+    void retrieveCourseForReview() {
+        Review review = entityManager.find(Review.class, 50001L);
+        log.info("Course -> {}", review.getCourse());
     }
 }

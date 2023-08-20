@@ -3,6 +3,7 @@ package com.bartek.jpademo.entity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import lombok.*;
 
 @Entity
@@ -19,6 +20,9 @@ public class Review {
     private String rating;
 
     private String desc;
+
+    @ManyToOne
+    private Course course;
 
     public Review(String rating, String desc) {
         this.rating = rating;
