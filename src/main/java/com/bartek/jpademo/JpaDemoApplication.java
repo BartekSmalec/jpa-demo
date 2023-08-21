@@ -57,6 +57,7 @@ public class JpaDemoApplication implements CommandLineRunner {
 
         employeeRepository.save(new PartTimeEmployee("Jill", new BigDecimal(50)));
 
-        log.info("All employees ->  {} ", employeeRepository.retrieveAllEmployees());
+        log.info("All part time employees ->  {} ", employeeRepository.retrieveAllPartTimeEmployees());
+        log.info("All full time employees ->  {} ", employeeRepository.retrieveAllFullTimeEmployees());
     }
 }

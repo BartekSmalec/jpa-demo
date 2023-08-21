@@ -1,6 +1,8 @@
 package com.bartek.jpademo.repositories;
 
 import com.bartek.jpademo.entity.Employee;
+import com.bartek.jpademo.entity.FullTimeEmployee;
+import com.bartek.jpademo.entity.PartTimeEmployee;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
@@ -21,8 +23,12 @@ public class EmployeeRepository {
         return em.find(Employee.class, id);
     }
 
-    public List<Employee> retrieveAllEmployees() {
-        return em.createQuery("select e from Employee e", Employee.class).getResultList();
+    public List<PartTimeEmployee> retrieveAllPartTimeEmployees() {
+        return em.createQuery("select e from PartTimeEmployee e", PartTimeEmployee.class).getResultList();
+    }
+
+    public List<FullTimeEmployee> retrieveAllFullTimeEmployees() {
+        return em.createQuery("select e from FullTimeEmployee e", FullTimeEmployee.class).getResultList();
     }
 
     public void deleteById(Long id) {
