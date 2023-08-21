@@ -62,16 +62,12 @@ public class StudentRepository {
         //Persistence context (student++, passport++)
     }
 
-    public void insertStudentAndCourse() {
-        Student student = new Student("Jack");
-        Course course = new Course("Microservices in 100 steps");
-
-        em.persist(student);
-        em.persist(course);
+    public void insertStudentAndCourse(Student student, Course course) {
 
         student.addCourse(course);
         course.addStudent(student);
 
         em.persist(student);
+        em.persist(course);
     }
 }
