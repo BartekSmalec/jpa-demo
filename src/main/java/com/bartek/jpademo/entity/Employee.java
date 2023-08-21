@@ -11,8 +11,7 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @ToString
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-@DiscriminatorColumn(name = "EmployeeType")
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Employee {
     @Id
     @GeneratedValue
