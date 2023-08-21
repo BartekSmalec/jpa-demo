@@ -3,6 +3,7 @@ package com.bartek.jpademo.repositories;
 import com.bartek.jpademo.JpaDemoApplication;
 import com.bartek.jpademo.entity.Course;
 import com.bartek.jpademo.entity.Review;
+import com.bartek.jpademo.entity.Student;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
@@ -10,6 +11,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;

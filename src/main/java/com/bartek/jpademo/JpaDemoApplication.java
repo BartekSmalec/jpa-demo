@@ -53,11 +53,12 @@ public class JpaDemoApplication implements CommandLineRunner {
 
         studentRepository.insertStudentAndCourse(student, course);*/
 
-        employeeRepository.save(new FullTimeEmployee("Jack", new BigDecimal(10000)));
+
+/*        employeeRepository.save(new FullTimeEmployee("Jack", new BigDecimal(10000)));
 
         employeeRepository.save(new PartTimeEmployee("Jill", new BigDecimal(50)));
 
         log.info("All part time employees ->  {} ", employeeRepository.retrieveAllPartTimeEmployees());
-        log.info("All full time employees ->  {} ", employeeRepository.retrieveAllFullTimeEmployees());
+        log.info("All full time employees ->  {} ", employeeRepository.retrieveAllFullTimeEmployees());*/
     }
 }
