@@ -6,6 +6,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -57,5 +60,17 @@ class CourseSpringDataRepositoryTest {
 
         log.info("Sorted courses -> {}", courseSpringDataRepository.findAll(sort));
         log.info("Count -> {}", courseSpringDataRepository.count());
+    }
+
+    @Test
+    @Transactional
+    void pagination() {
+        PageRequest pageRequest = PageRequest.of(0,3);
+        Page<Course> firstPage = courseSpringDataRepository.findAll(pageRequest);
+        log.info("First page -> {}", firstPage.getContent());
+
+        Pageable second = pageRequest.next();
+        Page<Course> secondPage = courseSpringDataRepository.findAll(second);
+        log.info("Second page -> {}", secondPage.getContent());
     }
 }
