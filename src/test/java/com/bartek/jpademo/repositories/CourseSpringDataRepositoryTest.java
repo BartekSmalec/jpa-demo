@@ -73,4 +73,10 @@ class CourseSpringDataRepositoryTest {
         Page<Course> secondPage = courseSpringDataRepository.findAll(second);
         log.info("Second page -> {}", secondPage.getContent());
     }
+
+    @Test
+    @Transactional
+    void findByName() {
+        log.info("Find by name -> {}", courseSpringDataRepository.findByNameAndId("JPA in 50 Steps",10001L));
+    }
 }
