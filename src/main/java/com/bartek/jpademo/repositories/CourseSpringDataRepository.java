@@ -3,9 +3,11 @@ package com.bartek.jpademo.repositories;
 import com.bartek.jpademo.entity.Course;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import java.util.List;
 
+@RepositoryRestResource(path = "courses")
 public interface CourseSpringDataRepository extends JpaRepository<Course, Long> {
     List<Course> findByNameAndId(String name, Long id);
 

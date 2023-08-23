@@ -1,5 +1,6 @@
 package com.bartek.jpademo.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -33,6 +34,7 @@ public class Course {
     private List<Review> reviews = new ArrayList<>();
 
     @ManyToMany(mappedBy = "courses")
+    @JsonIgnore
     private List<Student> students = new ArrayList<>();
 
     @UpdateTimestamp
