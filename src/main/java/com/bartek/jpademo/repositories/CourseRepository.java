@@ -3,10 +3,11 @@ package com.bartek.jpademo.repositories;
 import com.bartek.jpademo.entity.Course;
 import com.bartek.jpademo.entity.Review;
 import jakarta.persistence.EntityManager;
-import jakarta.transaction.Transactional;
+
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 

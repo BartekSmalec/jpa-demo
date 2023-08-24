@@ -3,18 +3,14 @@ package com.bartek.jpademo.repositories;
 import com.bartek.jpademo.JpaDemoApplication;
 import com.bartek.jpademo.entity.Course;
 import com.bartek.jpademo.entity.Review;
-import com.bartek.jpademo.entity.Student;
 import jakarta.persistence.EntityManager;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -77,5 +73,17 @@ class CourseRepositoryTest {
     void retrieveCourseForReview() {
         Review review = entityManager.find(Review.class, 50001L);
         log.info("Course -> {}", review.getCourse());
+    }
+
+    @Test
+    @Transactional
+    void findById_firstLevelCache() {
+        Course course = courseRepository.findById(10001L);
+        log.info("First course retrieved {}", course);
+        Course courseOne = courseRepository.findById(10001L);
+        log.info("First course retrieved again {}", courseOne);
+        assertEquals("JPA in 50 Steps", course.getName());
+        assertEquals("JPA in 50 Steps", courseOne.getName());
+        log.info("Test is running");
     }
 }
