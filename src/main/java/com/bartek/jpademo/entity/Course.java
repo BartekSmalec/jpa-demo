@@ -29,7 +29,7 @@ public class Course {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "course", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "course", fetch = FetchType.LAZY)
     @ToString.Exclude
     private List<Review> reviews = new ArrayList<>();
 
