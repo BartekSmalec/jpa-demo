@@ -8,7 +8,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.annotations.Where;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -23,6 +25,8 @@ import java.util.List;
 @NamedQuery(name = "query_get_all_courses", query = "Select c from Course c")
 @NamedQuery(name = "query_get_100_steps_courses", query = "Select c from Course c where name like '%100 Steps'")
 @Cacheable
+@SQLDelete(sql = "update Course set is_deleted=true where id=?")
+@Where(clause = "is_deleted = false")
 public class Course {
     @Id
     @GeneratedValue
@@ -44,6 +48,7 @@ public class Course {
     @CreationTimestamp
     private LocalDateTime createdDate;
 
+    private boolean isDeleted;
 
     public Course(String name) {
         this.name = name;
