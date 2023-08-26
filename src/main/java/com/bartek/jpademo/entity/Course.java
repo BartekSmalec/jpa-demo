@@ -2,6 +2,7 @@ package com.bartek.jpademo.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.persistence.Cacheable;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -21,6 +22,7 @@ import java.util.List;
 @Table(name = "course")
 @NamedQuery(name = "query_get_all_courses", query = "Select c from Course c")
 @NamedQuery(name = "query_get_100_steps_courses", query = "Select c from Course c where name like '%100 Steps'")
+@Cacheable
 public class Course {
     @Id
     @GeneratedValue
@@ -41,6 +43,7 @@ public class Course {
     private LocalDateTime lastUpdatedDate;
     @CreationTimestamp
     private LocalDateTime createdDate;
+
 
     public Course(String name) {
         this.name = name;
