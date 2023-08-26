@@ -41,9 +41,9 @@ public class JpaDemoApplication implements CommandLineRunner {
         //courseRepository.playWithEntityManager();
 
 
-   /*     List<Review> reviews = new ArrayList<>();
-        reviews.add(new Review("5", "Great, I learned a lot"));
-        reviews.add(new Review("4", "Great course it helped me getting my first job"));
+        List<Review> reviews = new ArrayList<>();
+        reviews.add(new Review(ReviewRating.FIVE, "Great, I learned a lot"));
+        reviews.add(new Review(ReviewRating.FIVE, "Great course it helped me getting my first job"));
 
         courseRepository.addReviewsForCourse(10003L, reviews);
 
@@ -51,7 +51,7 @@ public class JpaDemoApplication implements CommandLineRunner {
         Student student = new Student("Jack");
         Course course = new Course("Microservices in 100 steps");
 
-        studentRepository.insertStudentAndCourse(student, course);*/
+        studentRepository.insertStudentAndCourse(student, course);
 
 
 /*        employeeRepository.save(new FullTimeEmployee("Jack", new BigDecimal(10000)));
