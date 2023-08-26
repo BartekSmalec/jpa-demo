@@ -20,12 +20,12 @@ values (40002, 'N123456');
 insert into passport(id, number)
 values (40003, 'L123560');
 
-insert into student(id, name, passport_id)
-values (20001, 'Ranga', 40001);
-insert into student(id, name, passport_id)
-values (20002, 'Adam', 40002);
-insert into student(id, name, passport_id)
-values (20003, 'Jane', 40003);
+insert into student(id, city, line1, line2, name, passport_id)
+values (20001, 'Cracow', 'line1', 'line2', 'Ranga', 40001);
+insert into student(id, city, line1, line2, name, passport_id)
+values (20002, 'Warsaw', 'line1', 'line2', 'Adam', 40002);
+insert into student(id, city, line1, line2, name, passport_id)
+values (20003, 'Hel', 'line1', 'line2', 'Jane', 40003);
 
 insert into review(id, rating, desc, course_id)
 values (50001, '5', 'Great course', 10001);

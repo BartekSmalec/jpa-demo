@@ -19,9 +19,12 @@ public class Student {
     @Column(nullable = false)
     private String name;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     @ToString.Exclude
     private Passport passport;
+
+    @Embedded
+    private Address address;
 
     @ManyToMany
     @JoinTable(

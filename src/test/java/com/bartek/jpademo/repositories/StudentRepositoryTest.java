@@ -1,6 +1,7 @@
 package com.bartek.jpademo.repositories;
 
 import com.bartek.jpademo.JpaDemoApplication;
+import com.bartek.jpademo.entity.Address;
 import com.bartek.jpademo.entity.Course;
 import com.bartek.jpademo.entity.Passport;
 import com.bartek.jpademo.entity.Student;
@@ -82,5 +83,15 @@ class StudentRepositoryTest {
         Course course = em.find(Course.class, 10001L);
         log.info("Course -> {}", course);
         log.info("Student's of course -> {}", course.getStudents());
+    }
+
+    @Test
+    @Transactional
+    void setAddressDetails() {
+        Student student = em.find(Student.class, 20001L);
+        student.setAddress(new Address("line2", "line1", "Hyderbad"));
+        em.flush();
+        log.info("Student -> {}", student);
+        log.info("Passport -> {}", student.getPassport());
     }
 }
