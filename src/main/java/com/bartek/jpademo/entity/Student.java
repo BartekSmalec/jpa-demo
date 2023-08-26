@@ -19,7 +19,7 @@ public class Student {
     @Column(nullable = false)
     private String name;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.LAZY)
     @ToString.Exclude
     private Passport passport;
 

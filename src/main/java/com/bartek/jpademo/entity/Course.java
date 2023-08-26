@@ -24,6 +24,7 @@ import java.util.List;
 @ToString
 @Table(name = "course")
 @NamedQuery(name = "query_get_all_courses", query = "Select c from Course c")
+@NamedQuery(name = "query_get_all_courses_join_fetch", query = "Select c from Course c join fetch c.students")
 @NamedQuery(name = "query_get_100_steps_courses", query = "Select c from Course c where name like '%100 Steps'")
 @Cacheable
 @SQLDelete(sql = "update Course set is_deleted=true where id=?")
