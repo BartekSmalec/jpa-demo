@@ -15,7 +15,7 @@ public class Review {
     @GeneratedValue
     private Long id;
 
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     private ReviewRating rating;
 
     private String desc;
