@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import lombok.extern.slf4j.Slf4j;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -27,6 +28,7 @@ import java.util.List;
 @Cacheable
 @SQLDelete(sql = "update Course set is_deleted=true where id=?")
 @Where(clause = "is_deleted = false")
+@Slf4j
 public class Course {
     @Id
     @GeneratedValue
@@ -69,5 +71,11 @@ public class Course {
 
     public void addStudent(Student students) {
         this.students.add(students);
+    }
+
+    @PreRemove
+    private void preRemove(){
+        log.info("Setting is deleted to true");
+        this.isDeleted = true;
     }
 }
